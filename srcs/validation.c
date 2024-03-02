@@ -6,7 +6,7 @@
 /*   By: lmoricon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:04:03 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/02/27 16:06:31 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/02 15:33:22 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 static int	check_content(char **map, int max_x, int max_y);
 static int	is_allowed(char c);
 static void	flood_fill(char **map, int max_x, int max_y);
+
+
 
 int	validate(char **map)
 {
@@ -44,14 +46,12 @@ static int check_content(char **map, int max_x, int max_y)
 {
 	int x;
 	int y;
-	int pflag;
-	int eflag;
-	int	ccount;
+	int flags[3];
 	
 	x = -1;
-	pflag = 0;
-	eflag = 0;
-	ccount = 0;
+	flags[0] = 0;
+	flags[1] = 0;
+	flags[2] = 0;
 	while (++x < max_x)
 	{
 		y = -1;
@@ -60,19 +60,18 @@ static int check_content(char **map, int max_x, int max_y)
 			if (!is_allowed(map[x][y]))
 				return (-1);
 			if ((x == 0 || y == 0 || x == max_x || y == max_y) && map[x][y] != '1')
-				return (-2); //controlla che il perimetro sia fatto da '1'i
+				return (-2);
 			if (map[x][y] == 'E')
-				eflag = 1;
+				flags[0] = 1;
 			if (map[x][y] == 'P')
-				pflag += 1;
+				flags[1] += 1;
 			if (map[x][y] == 'C')
-				ccount += 1;
+				flags[2] += 1;
 		}
 	}
-	if (pflag == 1 && ccount >= 1 && eflag == 1)
+	if (flags[0] == 1 && flags[1] == 1 && flags[2] >= 1)
 		return (fill_check(map, max_x, max_y));
-	else
-		return (-3);
+	return (-3);
 }
 
 static int	is_allowed(char c)
@@ -82,28 +81,41 @@ static int	is_allowed(char c)
 
 static int fill_check(char **map, int max_x, int max_y)
 {
-	//todo: copiare map
-	//trovare P ed E
-	// fare flood_fill sulla copia con x e y posizioni di 'P' 
-	// controllare che dove prima c-era E adesso ci sia 1
+	char	**map_copy;
+	int		i;
+	int		p_pos[2];
+
+	i = 0;
+	map_copy = ft_calloc((max_y + 1), sizeof(char *));
+	while(map[i])
+	{
+		map_copy[i] = ft_strdup(map[i]);
+		i++;
+	}
+	while(!ft_strchr(map_copy[i], 'P')
+			i--;
+	p_pos[0] = map_copy[i] - ft_strchr(map_copy[i], 'P');
+	p_pos[1] = i;
+	i = 0;
+	i = (flood_fill(copy_map, p_pos[0], p_pos[1], &i);
 	//free copia map
-	//return 1
+	return (i);
 }
 
-/*
-flood_fill di merda, da chiamare con x e y posizioni di P, chiama se stessa se la cella vicina != 1
-in questo modo dopo che ha finito controllo la vecchia posizione di E, se adesso == 1 allora la mappa
-dovrebbe essere giocabile.
-*/
-static void	flood_fill(char **map, int x, int y)
+static int	flood_fill(char **map, int x, int y, int *ret)
 {
+	if (map[x][y] == 'E')
+		*ret = 1;
+	if (*ret == 1)
+		return (1);
 	map[x][y] = '1';
 	if (map[x + 1][y] != '1')
-		 flood_fill(map, x + 1, y);
+		 flood_fill(map, x + 1, y, ret);
 	if (map[x - 1][y] != '1')
-		 flood_fill(map, x - 1, y);
+		 flood_fill(map, x - 1, y, ret);
 	if (map[x][y - 1] != '1')
-		 flood_fill(map, x, y - 1);
+		 flood_fill(map, x, y - 1, ret);
 	if (map[x][y + 1] != '1')
-		 flood_fill(map, x, y + 1);
+		 flood_fill(map, x, y + 1, ret);
+	return (0);
 }
