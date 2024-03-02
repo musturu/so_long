@@ -8,15 +8,15 @@ MFLAGS	= -lmlx -framework OpenGL -framework AppKit
 # Directories
 SRCDIR = srcs
 OBJDIR = objs
-LIBFTDIR = libft
-FT_PRINTFDIR = ft_printf
-MLXDIR = mlx
+LIBFTDIR = libs/libft
+FT_PRINTFDIR = libs/ft_printf
+MLXDIR = libs/mlx
 
 # Libraries
 LIBS = -L$(LIBFTDIR) -lft -L$(FT_PRINTFDIR) -lftprintf -L$(MLXDIR) -lmlx
 
 # Source files
-SRCS = $(wildcard $(SRCDIR)/*.c get_next_line/*.c)
+SRCS = $(wildcard $(SRCDIR)/*.c so_long.c)
 OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 # Executable name
@@ -27,7 +27,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@ make -C $(LIBFTDIR)
 	@ make -C $(FT_PRINTFDIR)
-	@ make -C ./mlx
+	@ make -C $(MLXDIR)
 	$(CC) $(CFLAGS) $^  $(MFLAGS) $(LIBS) -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
