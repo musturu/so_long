@@ -28,6 +28,7 @@ $(NAME): $(OBJS)
 	@ make -C $(LIBFTDIR)
 	@ make -C $(FT_PRINTFDIR)
 	@ make -C $(MLXDIR)
+	cp libs/mlx/libmlx.dylib .
 	$(CC) $(CFLAGS) $^  $(MFLAGS) $(LIBS) -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)

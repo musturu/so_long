@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoricon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 16:58:34 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/05 16:33:34 by lmoricon         ###   ########.fr       */
+/*   Created: 2024/03/05 15:05:02 by lmoricon          #+#    #+#             */
+/*   Updated: 2024/03/05 15:33:27 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
-int	main(int argc, char **argv)
+
+void	initialize(char *path, t_game *g)
 {
-	t_game	*game;
-	t_game	g;
-	char	*ext;
+	int	i;
 
-	game = &g;
-	if (argc != 2)
-		return (0); //error
-	ext = ft_strrchr(argv[1], '.');
-	if (ft_strncmp(ext, ".ber", ft_strlen(ext)) == 0)
-    {
-		initialize(argv[1], game);
-		mlx_loop(game -> mlx);
-	}
+	i = 0;
+	g -> map = ft_split(file_to_str(path), '\n');
+    g -> max.x = ft_strlen(g -> map[0]);
+	while (g -> map[i])
+		i++;
+	g -> max.y = i;
+	g -> mlx = mlx_init();
+    g -> win = mlx_new_window(g -> mlx, g -> max.x * TILE_R, i * TILE_R, "so_long");
 }
