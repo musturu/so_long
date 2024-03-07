@@ -6,7 +6,7 @@
 /*   By: lmoricon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:05:02 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/05 15:33:27 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:01:28 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,5 @@ void	initialize(char *path, t_game *g)
 	g -> mlx = mlx_init();
     g -> win = mlx_new_window(g -> mlx, g -> max.x * TILE_R, i * TILE_R, "so_long");
 }
+
+

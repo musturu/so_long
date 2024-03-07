@@ -6,6 +6,7 @@
 # endif
 
 # define TILE_R 64
+# define FPS 12
 
 # include <unistd.h>
 # include <stdio.h>
@@ -30,6 +31,24 @@ typedef struct s_game
     t_vec2  max;
     
 }   t_game;
+
+typedef struct s_tile_image
+{
+    void    *wall[FPS];
+    void    *coin[FPS];
+    void    *floor[FPS];
+    void    *exit[FPS];
+} t_images;
+
+typedef struct s_map_change
+{
+    t_vec2  p;
+    char    oldv;
+    char    newv;
+} t_change;
+
+typedef struct  
+
 /* MEMORY */
 void    free_pp(void **to_free);
 
