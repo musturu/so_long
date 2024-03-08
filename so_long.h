@@ -7,6 +7,11 @@
 
 #define TILE_R 64
 #define FPS 12
+#define PATH_TO_WALL "textures/wall.xpm"
+#define PATH_TO_FLOOR "textures/floor.xpm"
+#define PATH_TO_COIN "textures/coin.xpm"
+#define PATH_TO_EXIT "textures/exit.xpm"
+
 
 #include <fcntl.h>
 #include <stdint.h>
@@ -27,7 +32,7 @@ typedef struct s_game {
   void *win;
   char **map;
   t_vec2 max;
-
+  t_images images;
 } t_game;
 
 typedef struct s_tile_image {
@@ -42,6 +47,15 @@ typedef struct s_map_change {
   char oldv;
   char newv;
 } t_change;
+
+typedef struct s_player
+{
+  void    *im;
+  t_vec2  pos;
+  t_vec2  a;
+  t_vec2  v;
+} t_car;
+
 
 /* MEMORY */
 void free_pp(void **to_free);
