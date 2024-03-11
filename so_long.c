@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libs/mlx/mlx.h"
+#include "libs/ft_printf/printffone/ft_printf.h"
 
 int main(int argc, char **argv)
 {
     t_game g;
 
    if (validate(argc, argv) != 1)
-        return -1;
+        return (ft_printf("Fai il serio\n"));
     initialize(argv[1], &g);
     mlx_loop(g.mlx);
 }

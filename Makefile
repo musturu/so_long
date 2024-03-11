@@ -8,31 +8,34 @@ MFLAGS	= -lXext -lX11 -lm -lbsd
 # Directories
 SRCDIR = srcs
 OBJDIR = objs
-LIBFTDIR = libs/libft
 FT_PRINTFDIR = libs/ft_printf
+LIBFTDIR = libs/ft_printf/libft
 MLXDIR = libs/mlx
 
 # Libraries
-LIBS = -L$(LIBFTDIR) -lft -L$(FT_PRINTFDIR) -lftprintf -L$(MLXDIR) -lmlx
+LIBSFLAG = -L$(LIBFTDIR) -lft -L$(FT_PRINTFDIR) -lftprintf -L$(MLXDIR) -lmlx_Linux
 
 # Source files
-SRCS = $(wildcard $(SRCDIR)/*.c so_long.c)
-OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
+SRCS = so_long.c \
+	   srcs/fd_to_string.c srcs/memory_manager.c srcs/print_map.c srcs/init.c srcs/physics.c srcs/validation.c
+OBJS = so_long.o \
+	   objs/fd_to_string.o objs/memory_manager.o objs/print_map.o objs/init.o objs/physics.o objs/validation.o
+
 
 # Executable name
 NAME = so_long
 
 all: $(NAME)
 
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+	$(CC) -Wall -Wextra -Werror  $(LIBSFLAG) -I/usr/include -I$(MLXDIR) -O3 -c $< -o $@
+
+
 $(NAME): $(OBJS)
-	@ make -C $(LIBFTDIR)
 	@ make -C $(FT_PRINTFDIR)
 	@ make -C $(MLXDIR)
-	cp libs/mlx/libmlx.dylib .
-	$(CC) $(CFLAGS) $^  $(MFLAGS) $(LIBS) -o $@
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@ make -C $(LIBFTDIR)
+	$(CC) $(OBJS) -L$(MLXDIR) -lmlx_Linux -L/usr/lib -I$(MLXDIR) -lXext -lX11 -lm -lz $(LIBSFLAG) -o $(NAME)
 
 $(OBJDIR):
 	mkdir -p $@
