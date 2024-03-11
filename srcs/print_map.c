@@ -1,5 +1,8 @@
 #include "../so_long.h"
 
+static void print_tile(t_game g, char c, int x, int y);
+static void *get_im(t_game game, char c);
+
 void    print_map(t_game game)
 {
     int x;
@@ -27,12 +30,11 @@ static void print_tile(t_game g, char c, int x, int y)
 static void *get_im(t_game game, char c)
 {
     if (c == '0')
-        return (game.images.floor);
+        return (game.images.floor[0]);
     if (c == 'C')
-        return (game.images.coin);
+        return (game.images.coin[0]);
     if (c == 'E')
-        return (game.images.exit);
+        return (game.images.exit[0]);
     else
-        return (game.images.wall);
-
+        return (game.images.wall[0]);
 }

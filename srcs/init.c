@@ -12,6 +12,8 @@
 
 #include "../so_long.h"
 
+static void get_images(t_game *g);
+
 void initialize(char *path, t_game *g) {
   int i;
 
@@ -21,15 +23,18 @@ void initialize(char *path, t_game *g) {
   while (g->map[i])
     i++;
   g->max.y = i;
-  get_images(g);
   g->mlx = mlx_init();
   g->win = mlx_new_window(g->mlx, g->max.x * TILE_R, i * TILE_R, "so_long");
+  get_images(g);
 }
 
 static void get_images(t_game *g)
 {
-  g->images.wall[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_WALL, TILE_R, TILE_R);
-  g->images.floor[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_FLOOR, TILE_R, TILE_R);
-  g->images.exit[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_EXIT, TILE_R, TILE_R);
-  g->images.coin[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_COIN, TILE_R, TILE_R);
+    int res;
+
+    res = TILE_R;
+  g->images.wall[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_WALL, &res, &res);
+  g->images.floor[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_FLOOR, &res, &res);
+  g->images.exit[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_EXIT, &res, &res);
+  g->images.coin[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_COIN, &res, &res);
 }

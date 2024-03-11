@@ -2,10 +2,10 @@
 #define SO_LONG_H
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 512
+#define BUFFER_SIZE 42
 #endif
 
-#define TILE_R 64
+#define TILE_R 128
 #define FPS 12
 #define PATH_TO_WALL "textures/wall.xpm"
 #define PATH_TO_FLOOR "textures/floor.xpm"
@@ -27,6 +27,13 @@ typedef struct vector2 {
   int y;
 } t_vec2;
 
+typedef struct s_tile_image {
+  void *wall[FPS];
+  void *coin[FPS];
+  void *floor[FPS];
+  void *exit[FPS];
+} t_images;
+
 typedef struct s_game {
   void *mlx;
   void *win;
@@ -34,13 +41,6 @@ typedef struct s_game {
   t_vec2 max;
   t_images images;
 } t_game;
-
-typedef struct s_tile_image {
-  void *wall[FPS];
-  void *coin[FPS];
-  void *floor[FPS];
-  void *exit[FPS];
-} t_images;
 
 typedef struct s_map_change {
   t_vec2 p;

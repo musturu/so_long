@@ -35,15 +35,16 @@ int validate(int argc, char **argv) {
   ext = ft_strrchr(argv[1], '.');
   if (ft_strncmp(ext, ".ber", ft_strlen(ext)) != 0)
     return (-2);
-  map = ft_split(argv[1], '\n');
+  map = ft_split(file_to_str(argv[1]), '\n');
   i = 0;
   if (!map[0])
     return (-1);
   max_x = ft_strlen(map[i]);
-  while (map[++i]) {
+  while (map[++i])
+    {
     if ((int)ft_strlen(map[i]) != max_x)
       return (-1);
-  }
+    }
   return (check_content(map, max_x, i));
 }
 
