@@ -3,7 +3,7 @@ CC = gcc
 
 # Compiler flags
 CFLAGS = -Wall -Wextra -Werror
-MFLAGS	= -lmlx -framework OpenGL -framework AppKit
+MFLAGS	= -lXext -lX11 -lm -lbsd
 
 # Directories
 SRCDIR = srcs

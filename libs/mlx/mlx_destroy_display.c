@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmoricon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/02 16:58:34 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/05 16:33:34 by lmoricon         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libs/mlx/mlx.h"
+#include "mlx_int.h"
 
-int main(int argc, char **argv)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-    t_game g;
-
-   if (validate(argc, argv) != 1)
-        return -1;
-    initialize(argv[1], &g);
-    mlx_loop(g.mlx);
+	XCloseDisplay(xvar->display);
 }
