@@ -20,5 +20,6 @@ int main(int argc, char **argv)
    if (validate(argc, argv) != 1)
         return (ft_printf("Fai il serio\n"));
     initialize(argv[1], &g);
+    print_map(g);
     mlx_loop(g.mlx);
 }

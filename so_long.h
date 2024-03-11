@@ -62,6 +62,7 @@ int validate(int argc, char **argv);
 char *file_to_str(char *path);
 
 /* GRAPHICS */
+void    print_map(t_game game);
 
 /* GAMEPLAY */
 

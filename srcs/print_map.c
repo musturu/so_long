@@ -14,6 +14,7 @@ void    print_map(t_game game)
         y = 0;
         while (y < game.max.y)
         {
+            print_tile(game, '0', x, y);
             print_tile(game, game.map[y][x], x, y);
             y++;
         }
@@ -29,7 +30,7 @@ static void print_tile(t_game g, char c, int x, int y)
 
 static void *get_im(t_game game, char c)
 {
-    if (c == '0')
+    if (c == '0' || c == 'P')
         return (game.images.floor[0]);
     if (c == 'C')
         return (game.images.coin[0]);
