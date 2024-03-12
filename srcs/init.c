@@ -6,7 +6,7 @@
 /*   By: lmoricon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:05:02 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/06 16:01:28 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/12 09:09:21 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,15 @@ void initialize(char *path, t_game *g) {
     i++;
   g->max.y = i;
   g->mlx = mlx_init();
-  g->win = mlx_new_window(g->mlx, g->max.x * 64, i * 64, "so_long");
+  g->win = mlx_new_window(g->mlx, g->max.x * TILE_R, i * TILE_R, "so_long");
   get_images(g);
+  g->map_img = new_img(g->max.x * TILE_R, i * TILE_R, g->mlx);
 }
 
 static void get_images(t_game *g)
 {
-    int res;
-
-    res = TILE_R;
-    g->images.wall[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_WALL, &res, &res);
-    g->images.floor[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_FLOOR, &res, &res);
-    g->images.exit[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_EXIT, &res, &res);
-    g->images.coin[0] = mlx_xpm_file_to_image((*g).mlx, PATH_TO_COIN, &res, &res);
+    g->images.wall = new_file_img(PATH_TO_WALL, g->mlx);
+    g->images.floor = new_file_img(PATH_TO_FLOOR, g->mlx);
+    g->images.exit[0] = new_file_img(PATH_TO_EXIT, g->mlx);
+    g->images.coin = new_file_img(PATH_TO_COIN, g->mlx);
 }
