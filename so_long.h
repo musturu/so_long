@@ -7,6 +7,8 @@
 
 #define TILE_R 128
 #define FPS 12
+#define AC  1
+#define TURN_SPEED 10
 #define PATH_TO_WALL "textures/wall.xpm"
 #define PATH_TO_FLOOR "textures/floor.xpm"
 #define PATH_TO_COIN "textures/coin.xpm"
@@ -17,6 +19,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <math.h>
 
 #include "libs/ft_printf/libft/libft.h"
 #include "libs/ft_printf/printffone/ft_printf.h"
@@ -69,6 +72,7 @@ typedef struct s_game
 
 /* MEMORY */
 void free_pp(void **to_free);
+int quit_free(t_game game, void **free);
 
 /* VALIDATION */
 int validate(int argc, char **argv);
@@ -81,8 +85,11 @@ t_image	new_img(int w, int h, void *mlx);
 void	put_img_to_img(t_image dst, t_image src, int x, int y);
 
 /* GAMEPLAY */
+void    turn(t_game g, int change);
+void    accel(t_game g, int change);
 
 /* UTILS */
 void initialize(char *path, t_game *g);
+int key_hook(int key, t_game game);
 
 #endif

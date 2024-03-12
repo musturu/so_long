@@ -21,6 +21,7 @@ void    phys_update(t_game *g, int time)
         car.a.x /= 15/car.a.x;
         car.a.x /= 15/car.a.x;
     }
+    //change Accelleration direction
     car.pos.x += car.v.x * time + (car.a.x * time * time)/2;
     car.pos.y += car.v.y * time + (car.a.y * time * time)/2;
     car.v.x += car.a.x * time;
@@ -43,9 +44,28 @@ void    collision(t_game *g)
 
     pos = get_tile(g->player.pos);
     if (g->map[pos.y][pos.x] == 'C')
+    {
+        g->map[pos.y][pos.x] = '0';
         g->coins--;
-    if (g->map[pos.y][pos.x] == 'E' && g->coins == 0)
+    }
+    else if (g->map[pos.y][pos.x] == 'E' && g->coins == 0)
+    {
         return ;//EXIT WIN;
-    if (g->map[pos.y][pos.x] == 'N')
+    }
+    else if (g->map[pos.y][pos.x] == 'N')
+    {
         return ;//EXIT LOSS
+    }
+}
+
+void    accel(t_game g, int change)
+{
+    g.player.a.x += change;
+    return ;
+}
+
+void    turn(t_game g, int change)
+{
+    g.player.ori.x += change;
+    return ;
 }

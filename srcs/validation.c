@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include <stdio.h>
 
 /*	input: split del file .ber
  *	controllo dei caratteri, devono essere solo 1/0/E/P/C
@@ -111,7 +110,7 @@ static int fill_check(char **map, int max_y)
     i--;
     while (!ft_strchr(map_copy[i], 'P'))
         i--;
-    p_pos[0] = -(map_copy[i] - ft_strchr(map_copy[i], 'P'));
+    p_pos[0] = (ft_strchr(map_copy[i], 'P') - map_copy[i]);
     p_pos[1] = i;
     flood_fill(map_copy, p_pos[0], p_pos[1]);
     i = -1;
