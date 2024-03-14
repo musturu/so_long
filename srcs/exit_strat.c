@@ -1,6 +1,6 @@
 #include "../so_long.h"
 
-int quit_free(t_game game, void **free)
+void quit_free(t_game game, void **free)
 {
     free_pp(free);
     free_pp((void *)game.map);

@@ -44,11 +44,12 @@ typedef struct vector2 {
 
 typedef struct s_player
 {
-  void      *im;
+  void      *images[8];
+  void      *to_print;
   t_vec2    pos;
   t_vec2    a;
   t_vec2    v;
-  t_vec2    ori;
+  int       ori;
 } t_car;
 
 typedef struct s_tile_image {
