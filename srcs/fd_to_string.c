@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../so_long.h"
+#include <unistd.h>
 
 /*
 * @param path: path to a file
@@ -18,21 +19,24 @@
 */
 char  *file_to_str(char *path)
 {
-  int  fd;
-  char  buf[BUFFER_SIZE + 1];
-  char  *ret;
-  char  *tofree;
-  
-  ret = ft_strdup("");
-  buf[BUFFER_SIZE] = 0;
-  fd = open(path, O_RDONLY);
-  while(read(fd, buf, BUFFER_SIZE) > 0)
-  {
-    tofree = ret;
-    ret = ft_strjoin(ret, buf);
-    free(tofree);  
-  }
-  close(fd);
-  return (ret);
+    int     fd;
+    char    buf[BUFFER_SIZE + 1];
+    char    *ret;
+    char    *tofree;
+    int     readr;
+
+    readr = 1;
+    ret = ft_strdup("");
+    fd = open(path, O_RDONLY);
+    while(readr > 0)
+    {
+        readr = read(fd, buf, BUFFER_SIZE);
+        buf[readr] = 0;
+        tofree = ret;
+        ret = ft_strjoin(ret, buf);
+        free(tofree);
+    }
+    close(fd);
+    return (ret);
 }
 

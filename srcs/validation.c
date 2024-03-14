@@ -47,7 +47,7 @@ int validate(int argc, char **argv)
         if ((int)ft_strlen(map[i]) != max_x)
             return (-1);
     }
-    return (check_content(map, max_x, i - 1));
+    return (check_content(map, max_x, i));
 }
 
 static int check_content(char **map, int max_x, int max_y)

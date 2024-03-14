@@ -8,6 +8,7 @@
 #define TILE_R 128
 #define FPS 12
 #define AC  1
+#define DC  5
 #define TURN_SPEED 10
 #define PATH_TO_WALL "textures/wall.xpm"
 #define PATH_TO_FLOOR "textures/floor.xpm"

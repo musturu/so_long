@@ -8,8 +8,8 @@ int key_hook(int key, t_game game)
         accel(game, AC);
     if (key == 97)
         turn(game, TURN_SPEED);
-    if (key == 115);
-        accel(game, AC);
+    if (key == 115)
+        accel(game, DC);
     if (key == 100)
         turn(game, TURN_SPEED);
     return (1);

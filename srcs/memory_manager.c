@@ -17,6 +17,8 @@ void	free_pp(void **to_free)
 	int	i;
 
 	i = 0;
+    if (!to_free)
+        return  ;
 	while (to_free[i])
 	{
 		free(to_free[i]);
