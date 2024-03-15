@@ -1,7 +1,7 @@
 /*
 todo
 funzione che prende il tempo passato e calcola la strada fatta tramite
-accellerazione (car.a) e velocita (car.v)
+accellerazione (g->player.a) e velocita (g->player.v)
 
 
 a is pixels/milliseconds(squared)
@@ -14,40 +14,41 @@ ori is degrees(int)
 
 void    phys_update(t_game *g, int time)
 {
-    static tf_vec2  cumupos;
-    t_car   car;
+    static t_dvec2  cumupos;
 
-
-    car = (*g).player;
     if (cumupos.x + cumupos.y >= MIN_MOVE)
     {
-        car.pos.x += cumupos.x;
-        car.pos.y += cumupos.y;
+        g->player.pos.x += cumupos.x;
+        g->player.pos.y += cumupos.y;
         cumupos.x = 0;
         cumupos.y = 0;
     }
-    if (car.a.x != 0)
-        car.a.x /= 15/car.a.x;
-    if (car.a.y != 0)
-        car.a.x /= 15/car.a.x;
+    /*if (g->player.a.x != 0)
+        g->player.a.x /= 5/g->player.a.x;
+    if (g->player.a.y != 0)
+        g->player.a.y /= 5/g->player.a.y;*/
+
     //change Accelleration direction
-    cumupos.x += car.v.x * time + (car.a.x * time * time)/2;
-    cumupos.y += car.v.y * time + (car.a.y * time * time)/2;
-    car.v.x += car.a.x * time;
-    car.v.y += car.v.y * time;
-    car.a.x /= 15/car.a.x;
+    cumupos.x += g->player.v.x * (time + (g->player.a.x * time * time)/2);
+    cumupos.y += g->player.v.y * (time + (g->player.a.y * time * time)/2);
+    g->player.v.x += g->player.a.x * time;
+    g->player.v.y += g->player.a.y * time;
+    printf("pos:%i , %i\n", g->player.pos.x, g->player.pos.y);
+    printf("ori:%i\n", g->player.ori);
+    printf("a:%f , %f\n", g->player.a.x, g->player.a.y);
+    printf("v:%f , %f\n", g->player.v.x, g->player.v.y);
 }
 
 t_vec2 get_tile(t_vec2 pixels)
 {
     t_vec2 ret;
 
-    ret.x = pixels.x + (TILE_R / 2) / TILE_R;
-    ret.y = pixels.y + (TILE_R / 2) / TILE_R;
+    ret.x = pixels.x / TILE_R;
+    ret.y = pixels.y / TILE_R;
     return (ret);
 }
 
-void    collision(t_game *g)
+int    collision(t_game *g)
 {
     t_vec2  pos;
 
@@ -66,18 +67,25 @@ void    collision(t_game *g)
     {
         return quit_free(*g, NULL);//EXIT LOSS
     }
+    return (0);
 }
 
-void    accel(t_game g, int change)
+void    accel(t_game *g, double change)
 {
+    double rad;
 
-    g.player.a.x += change * cos(g.player.ori);
-    g.player.a.y += change * sin(g.player.ori);
+    rad = g->player.ori * 3.14/180;
+    g->player.a.x += change * cos(rad);
+    g->player.a.y += change * sin(rad);
     return ;
 }
 
-void    turn(t_game g, int change)
+void    turn(t_game *g, int change)
 {
-    g.player.ori += change;
+    g->player.ori = (g->player.ori + change) % 360;
+    if (g->player.ori < 0)
+    {
+        g->player.ori = g->player.ori + 360;
+    }
     return ;
 }

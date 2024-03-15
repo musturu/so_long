@@ -7,10 +7,10 @@
 
 # define TILE_R 128
 # define FPS 12
-# define AC  1
-# define DC  5
+# define AC  0.02
+# define DC  -0.02
 # define MIN_MOVE 1
-# define TURN_SPEED 10
+# define TURN_SPEED 5
 # define PATH_TO_WALL "textures/wall.xpm"
 # define PATH_TO_FLOOR "textures/floor.xpm"
 # define PATH_TO_COIN "textures/coin.xpm"
@@ -22,6 +22,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <math.h>
+# include <sys/time.h>
+# include <stdlib.h>
 
 # include "libs/ft_printf/libft/libft.h"
 # include "libs/ft_printf/printffone/ft_printf.h"
@@ -43,18 +45,18 @@ typedef struct vector2 {
   int y;
 } t_vec2;
 
-typedef struct fvector2
+typedef struct dvector2
 {
   double  x;
   double  y;
-} tf_vec2;
+} t_dvec2;
 
 typedef struct s_player
 {
   int     img_index;
   t_vec2  pos;
-  tf_vec2 a;
-  tf_vec2 v;
+  t_dvec2 a;
+  t_dvec2 v;
   int     ori;
 } t_car;
 
@@ -93,14 +95,19 @@ void    print_map(t_game game);
 t_image	new_file_img(char * path, void *mlx_ptr);
 t_image	new_img(int w, int h, void *mlx);
 void	put_img_to_img(t_image dst, t_image src, int x, int y);
+void    print_player(t_game g);
 
 /* GAMEPLAY */
-void    turn(t_game g, int change);
-void    accel(t_game g, int change);
+void    turn(t_game *g, int change);
+void    accel(t_game *g, double change);
+void    phys_update(t_game *g, int time);
+int     update(t_game *g);
 
 /* UTILS */
 void initialize(char *path, t_game *g);
-int key_hook(int key, t_game game);
+int   key_hook(int key, t_game *game);
 t_vec2 get_tile(t_vec2 pixels);
+long long	millitime(void);
+void	get_ms(t_game *g);
 
 #endif

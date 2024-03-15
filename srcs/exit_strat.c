@@ -1,6 +1,6 @@
 #include "../so_long.h"
 
-void quit_free(t_game game, void **free)
+int quit_free(t_game game, void **free)
 {
     free_pp(free);
     free_pp((void *)game.map);
@@ -10,4 +10,5 @@ void quit_free(t_game game, void **free)
     mlx_destroy_image(game.images.exit[0].img_ptr, game.win);
     mlx_destroy_image(game.images.exit[1].img_ptr, game.win);
     exit(0);
+    return (1);
 }
