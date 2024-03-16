@@ -70,10 +70,10 @@ static int    collision(t_game *g)
     next_pos = get_tile(*g, next_pos);
     if (g->map[next_pos.y][next_pos.x] == '1')
     {
-        g->player.v.x *= -1;
-        g->player.v.y *= -1;
-        g->player.a.x *= -1;
-        g->player.a.y *= -1;
+        g->player.v.x *= -0.7;
+        g->player.v.y *= -0.7;
+        g->player.a.x *= -0.7;
+        g->player.a.y *= -0.7;
     }
 
     if (g->map[pos.y][pos.x] == 'C')
