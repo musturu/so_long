@@ -13,6 +13,7 @@ ori is degrees(int)
 #include "../so_long.h"
 
 static void friction(t_game *g, int time);
+static int    collision(t_game *g);
 
 void    phys_update(t_game *g, int time)
 {
@@ -31,11 +32,13 @@ void    phys_update(t_game *g, int time)
     //     g->player.a.y /= 5/g->player.a.y;
 
     //change Accelleration direction
+    collision(g);
     g->player.v.x = (g->player.a.x * time) + g->player.v.x;
     g->player.v.y = (g->player.a.y * time) + g->player.v.y;
     cupos.x = (g->player.v.x * time) + cupos.x;
     cupos.y = (g->player.v.y * time) + cupos.y;
     friction(g, time);
+    collision(g);
     // printf("pos:%i , %i\n", g->player.pos.x, g->player.pos.y);
     // printf("ori:%i\n", g->player.ori);
     // printf("a:%f , %f\n", g->player.a.x, g->player.a.y);
@@ -51,15 +54,27 @@ static void friction(t_game *g, int time)
 }
 
 
-int    collision(t_game *g)
+static int    collision(t_game *g)
 {
     t_vec2  pos;
     t_vec2  pixelpos;
+    t_vec2  next_pos;
 
     pixelpos = g->player.pos;
-    pixelpos.x += TILE_R / 2;
-    pixelpos.y += TILE_R / 2;
+    next_pos = g->player.pos;
+    pixelpos.x += (TILE_R / 2);
+    pixelpos.y += (TILE_R / 2);
+    next_pos.x += (TILE_R / 2) + g->player.v.x * 15;
+    next_pos.y += (TILE_R / 2) + g->player.v.x * 15;
     pos = get_tile(*g, pixelpos);
+    next_pos = get_tile(*g, next_pos);
+    if (g->map[next_pos.y][next_pos.x] == '1')
+    {
+        g->player.v.x *= -1;
+        g->player.v.y *= -1;
+        g->player.a.x *= -1;
+        g->player.a.y *= -1;
+    }
 
     if (g->map[pos.y][pos.x] == 'C')
     {
@@ -97,7 +112,9 @@ void    turn(t_game *g, int change)
         g->player.ori = g->player.ori + 360;
     }
     rad = change * 3.14/180;
-    g->player.v.x *= cos(rad) + sin(rad);
-    g->player.v.y *= sin(rad) + sin(rad);
+    g->player.v.x *= cos(rad);
+    g->player.v.y *= sin(rad);
+    g->player.a.x *= cos(rad);
+    g->player.a.y *= sin(rad);
     return ;
 }
