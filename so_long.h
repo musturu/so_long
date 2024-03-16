@@ -7,11 +7,11 @@
 
 # define TILE_R 128
 # define FPS 12
-# define AC  0.02
-# define DC  -0.02
+# define AC  0.025
+# define DC  -0.025
 # define MIN_MOVE 1
-# define TURN_SPEED 5
-# define FRICTION 0.89
+# define TURN_SPEED 30
+# define FRICTION 0.85
 
 # define PATH_TO_WALL "textures/wall.xpm"
 # define PATH_TO_FLOOR "textures/floor.xpm"

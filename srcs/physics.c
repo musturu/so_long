@@ -45,19 +45,9 @@ void    phys_update(t_game *g, int time)
 static void friction(t_game *g, int time)
 {
     if ((*g).player.v.x != 0)
-    {
-        if ((*g).player.v.x < 0)
-            (*g).player.v.x -= ((*g).player.v.x * FRICTION) * time;
-        else
-            (*g).player.v.x -= ((*g).player.v.x * FRICTION) * time;
-    }
+        (*g).player.v.x -= ((*g).player.v.x * FRICTION) * time;
     if ((*g).player.v.y != 0)
-    {
-        if ((*g).player.v.y < 0)
-            (*g).player.v.y -= ((*g).player.v.y * FRICTION) * time;
-        else
-            (*g).player.v.y -= ((*g).player.v.y * FRICTION) * time;
-    }
+        (*g).player.v.y -= ((*g).player.v.y * FRICTION) * time;
 }
 
 
