@@ -11,6 +11,8 @@
 # define DC  -0.02
 # define MIN_MOVE 1
 # define TURN_SPEED 5
+# define FRICTION 0.89
+
 # define PATH_TO_WALL "textures/wall.xpm"
 # define PATH_TO_FLOOR "textures/floor.xpm"
 # define PATH_TO_COIN "textures/coin.xpm"
@@ -106,7 +108,7 @@ int     update(t_game *g);
 /* UTILS */
 void initialize(char *path, t_game *g);
 int   key_hook(int key, t_game *game);
-t_vec2 get_tile(t_vec2 pixels);
+t_vec2 get_tile(t_game g, t_vec2 pixels);
 long long	millitime(void);
 void	get_ms(t_game *g);
 

@@ -26,22 +26,26 @@ void    print_map(t_game game)
 void    print_player(t_game g)
 {
     t_vec2 p;
-/*
+    int x;
+    int y;
+    t_vec2 pxp;
+
     x = -1;
+    p = g.player.pos;
     while(x <= 1)
     {
         y = -1;
         while (y <= 1)
         {
-            put_img_to_img(g.map_img, get_im(g, g.map[p.y][p.x]),
-                (p.x + x)  * TILE_R, (p.y + y) * TILE_R);
+            pxp.x = p.x + (x * TILE_R);
+            pxp.y = p.y + (y * TILE_R);
+            pxp = get_tile(g, pxp);
+            put_img_to_img(g.map_img, get_im(g, g.map[pxp.y][pxp.x]),
+                pxp.x * TILE_R, pxp.y * TILE_R);
             y++;
         }
         x++;
-    }*/
-    p = get_tile(g.player.pos);
-    put_img_to_img(g.map_img, get_im(g, g.map[p.y][p.x]),
-                (p.x) * TILE_R, (p.y) * TILE_R);
+    }
     put_img_to_img(g.map_img, g.images.player[g.player.img_index],
         g.player.pos.x, g.player.pos.y);
     mlx_put_image_to_window(g.mlx, g.win, g.map_img.img_ptr, 0, 0);

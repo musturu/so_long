@@ -20,3 +20,18 @@ void	get_ms(t_game *g)
 	if (now > g->ms)
 		g->ms = now;
 }
+
+t_vec2 get_tile(t_game g, t_vec2 pixels)
+{
+    t_vec2 ret;
+
+    if (pixels.x < 0 || pixels.y < 0)
+    {
+        ret.x = 0;
+        ret.y = 0;
+        return (ret);
+    }
+    ret.x = (pixels.x / TILE_R) % (g.max.x + 1);
+    ret.y = (pixels.y / TILE_R) % (g.max.y + 1);
+    return (ret);
+}
