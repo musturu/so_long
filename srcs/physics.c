@@ -106,7 +106,7 @@ void    turn(t_game *g, int change)
     {
         g->player.ori = g->player.ori + 360;
     }
-    rad = g->player.ori * 3.14/180;
+    rad = change * 3.14/180;
     g->player.v.x *= cos(rad) + sin(rad);
     g->player.v.y *= sin(rad) + sin(rad);
     return ;

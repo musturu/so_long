@@ -31,7 +31,7 @@ t_vec2 get_tile(t_game g, t_vec2 pixels)
         ret.y = 0;
         return (ret);
     }
-    ret.x = (pixels.x / TILE_R) % (g.max.x + 1);
-    ret.y = (pixels.y / TILE_R) % (g.max.y + 1);
+    ret.x = (pixels.x / TILE_R) % (g.max.x);
+    ret.y = (pixels.y / TILE_R) % (g.max.y);
     return (ret);
 }
