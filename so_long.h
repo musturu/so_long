@@ -10,7 +10,7 @@
 # define AC  0.025
 # define DC  -0.025
 # define MIN_MOVE 1
-# define TURN_SPEED 30
+# define TURN_SPEED 5
 # define FRICTION 0.85
 
 # define PATH_TO_WALL "textures/wall.xpm"

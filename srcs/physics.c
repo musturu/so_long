@@ -10,6 +10,8 @@ pos is pixels
 ori is degrees(int)
 */
 
+//todo: rivedere fisica e attrito. funziona male il turning 
+
 #include "../so_long.h"
 
 static void friction(t_game *g, int time);
@@ -62,18 +64,18 @@ static int    collision(t_game *g)
 
     pixelpos = g->player.pos;
     next_pos = g->player.pos;
-    pixelpos.x += (TILE_R / 2);
-    pixelpos.y += (TILE_R / 2);
+    // pixelpos.x += (TILE_R / 2);
+    // pixelpos.y += (TILE_R / 2);
     next_pos.x += (TILE_R / 2) + g->player.v.x * 15;
     next_pos.y += (TILE_R / 2) + g->player.v.x * 15;
     pos = get_tile(*g, pixelpos);
     next_pos = get_tile(*g, next_pos);
     if (g->map[next_pos.y][next_pos.x] == '1')
     {
-        g->player.v.x *= -0.7;
-        g->player.v.y *= -0.7;
-        g->player.a.x *= -0.7;
-        g->player.a.y *= -0.7;
+        g->player.v.x *= -0.9;
+        g->player.v.y *= -0.9;
+        g->player.a.x *= -0.9;
+        g->player.a.y *= -0.9;
     }
 
     if (g->map[pos.y][pos.x] == 'C')
