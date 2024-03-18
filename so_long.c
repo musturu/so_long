@@ -21,8 +21,8 @@ int main(int argc, char **argv)
         return (ft_printf("Fai il serio\n"));
     initialize(argv[1], &g);
     print_map(g);
-    mlx_hook(g.win, 2, 1L<<0, key_hook, &g);
-    mlx_key_hook(g.win, key_hook, &g);
+    mlx_hook(g.win, 2, 1L<<0, key_hook_down, &g);
+    mlx_hook(g.win, 3, 1L<<0, key_hook_up, &g);
     mlx_loop_hook(g.mlx, update, &g);
     mlx_loop(g.mlx);
 }

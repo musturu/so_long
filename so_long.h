@@ -55,11 +55,13 @@ typedef struct dvector2
 
 typedef struct s_player
 {
-  int     img_index;
-  t_vec2  pos;
-  t_dvec2 a;
-  t_dvec2 v;
-  int     ori;
+  int       img_index;
+  t_vec2    pos;
+  t_dvec2   a;
+  t_dvec2   v;
+  int       ori;
+  char      isaccel;
+  char      isturn;
 } t_car;
 
 typedef struct s_tile_image {
@@ -101,13 +103,14 @@ void    print_player(t_game g);
 
 /* GAMEPLAY */
 void    turn(t_game *g, int change);
-void    accel(t_game *g, double change);
+void    accel(t_game *g);
 void    phys_update(t_game *g, int time);
 int     update(t_game *g);
 
 /* UTILS */
 void initialize(char *path, t_game *g);
-int   key_hook(int key, t_game *game);
+int   key_hook_down(int key, t_game *game);
+int   key_hook_up(int key, t_game *game);
 t_vec2 get_tile(t_game g, t_vec2 pixels);
 long long	millitime(void);
 void	get_ms(t_game *g);

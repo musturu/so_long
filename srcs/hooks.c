@@ -2,18 +2,31 @@
 
 static void    get_ori(t_game *g);
 
-int key_hook(int key, t_game *game)
+int key_hook_down(int key, t_game *game)
 {
     if (key == 65307)
         return (quit_free(*game, NULL));
     if (key == 119)
-        accel(game, AC);
+        game->player.isaccel = 1;
     if (key == 97)
-        turn(game, - TURN_SPEED);
+        game->player.isturn = -1;
     if (key == 115)
-        accel(game, DC);
+        game->player.isaccel = -1;
     if (key == 100)
-        turn(game,  TURN_SPEED);
+        game->player.isturn = 1;
+    return (1);
+}
+
+int key_hook_up(int key, t_game *game)
+{
+    if (key == 119)
+        game->player.isaccel = 0;
+    if (key == 97)
+        game->player.isturn = 0;
+    if (key == 115)
+        game->player.isaccel = 0;
+    if (key == 100)
+        game->player.isturn = 0;
     return (1);
 }
 
