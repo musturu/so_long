@@ -7,8 +7,8 @@
 
 # define TILE_R 128
 # define FPS 12
-# define AC  0.025
-# define DC  -0.025
+# define AC  0.035
+# define DC  -0.035
 # define MIN_MOVE 1
 # define TURN_SPEED 5
 # define FRICTION 0.85

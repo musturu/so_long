@@ -24,6 +24,6 @@ void	free_pp(void **to_free)
 			free(to_free[i]);
 			i++;
 		}
-	}
 	free(to_free);
+    }
 }

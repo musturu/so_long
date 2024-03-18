@@ -3,12 +3,12 @@
 int quit_free(t_game game, void **free)
 {
     free_pp(free);
+    mlx_destroy_image(game.mlx, game.images.coin.img_ptr);
+    mlx_destroy_image(game.mlx, game.images.wall.img_ptr);
+    mlx_destroy_image(game.mlx, game.images.floor.img_ptr);
+    mlx_destroy_image(game.mlx, game.images.exit[0].img_ptr);
+    mlx_destroy_image(game.mlx, game.images.exit[1].img_ptr);
     free_pp((void *)game.map);
-    mlx_destroy_image(game.images.coin.img_ptr, game.win);
-    mlx_destroy_image(game.images.wall.img_ptr, game.win);
-    mlx_destroy_image(game.images.floor.img_ptr, game.win);
-    mlx_destroy_image(game.images.exit[0].img_ptr, game.win);
-    mlx_destroy_image(game.images.exit[1].img_ptr, game.win);
     exit(0);
     return (1);
 }
