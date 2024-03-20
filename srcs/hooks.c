@@ -1,4 +1,5 @@
 #include "../so_long.h"
+#include <stdio.h>
 
 static void    get_ori(t_game *g);
 

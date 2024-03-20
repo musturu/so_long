@@ -80,11 +80,17 @@ static void get_content(t_game *g, int max_x, int max_y)
 
 static void init_player(t_game *g)
 {
-  g->player.a.x = 0;
-  g->player.a.y = 0;
-  g->player.v.x = 0;
-  g->player.v.y = 0;
-  g->player.ori = 0;
-  g->player.img_index = 0;
-  g->ms = 0;
+    g->player.a.x = 0;
+    g->player.a.y = 0;
+    g->player.v.x = 0;
+    g->player.v.y = 0;
+    g->player.ori = 0;
+    g->player.eforce.x = 0;
+    g->player.eforce.y = 0;
+    g->player.tforce.y = 0;
+    g->player.tforce.x = 0;
+    g->player.img_index = 0;
+    g->ms = 0;
+    g->player.isturn = 0;
+    g->player.isaccel = 0;
 }

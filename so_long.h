@@ -7,8 +7,8 @@
 
 # define TILE_R 128
 # define FPS 12
-# define AC  0.035
-# define DC  -0.035
+# define AC  0.01
+# define DC  -0.008
 # define MIN_MOVE 1
 # define TURN_SPEED 5
 # define FRICTION 0.85
@@ -56,6 +56,8 @@ typedef struct dvector2
 typedef struct s_player
 {
   int       img_index;
+  t_dvec2   eforce;
+  t_dvec2   tforce;
   t_vec2    pos;
   t_dvec2   a;
   t_dvec2   v;
@@ -102,8 +104,6 @@ void	put_img_to_img(t_image dst, t_image src, int x, int y);
 void    print_player(t_game g);
 
 /* GAMEPLAY */
-void    turn(t_game *g, int change);
-void    accel(t_game *g);
 void    phys_update(t_game *g, int time);
 int     update(t_game *g);
 
