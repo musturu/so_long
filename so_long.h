@@ -89,11 +89,11 @@ typedef struct s_game
 
 
 /* MEMORY */
-void free_pp(void **to_free);
-int quit_free(t_game game, void **free, char *toprint);
+int free_pp(void **to_free);
+int quit_free(t_game game, char *toprint);
 
 /* VALIDATION */
-int validate(int argc, char **argv, char **map);
+int validate(int argc, char **argv);
 char *file_to_str(char *path);
 
 /* GRAPHICS */

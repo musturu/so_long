@@ -12,12 +12,12 @@
 
 #include "../so_long.h"
 
-void	free_pp(void **to_free)
+int	free_pp(void **to_free)
 {
 	int	i;
 
 	i = 0;
-    if (to_free != NULL)
+    if (*to_free != NULL)
 	{
 		printf("ho freeato\n");
 		while (to_free[i])
@@ -27,4 +27,5 @@ void	free_pp(void **to_free)
 		}
 	free(to_free);
     }
+	return (-1);
 }

@@ -1,8 +1,7 @@
 #include "../so_long.h"
 
-int quit_free(t_game game, void **free, char *toprint)
+int quit_free(t_game game, char *toprint)
 {
-    free_pp(free);
     if (game.mlx != NULL)
     {
         mlx_destroy_image(game.mlx, game.images.coin.img_ptr);
@@ -10,8 +9,8 @@ int quit_free(t_game game, void **free, char *toprint)
         mlx_destroy_image(game.mlx, game.images.floor.img_ptr);
         mlx_destroy_image(game.mlx, game.images.exit[0].img_ptr);
         mlx_destroy_image(game.mlx, game.images.exit[1].img_ptr);
+        free_pp((void *)game.map);
     }
-    free_pp((void *)game.map);
     ft_printf("%s", toprint);
     exit(0);
     return (1);

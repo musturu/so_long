@@ -15,11 +15,9 @@
 int main(int argc, char **argv)
 {
     t_game  g;
-    char    **map;
 
-    map = NULL;
-    if (validate(argc, argv, map) != 1)
-        return (quit_free(g, (void **)map, "Error\nFai il serio\n"));
+    if (validate(argc, argv) != 1)
+        return (quit_free(g, "Error\nFai il serio\n"));
     initialize(argv[1], &g);
     print_map(g);
     mlx_hook(g.win, 3, 1L<<1, key_hook_up, &g);

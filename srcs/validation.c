@@ -24,11 +24,12 @@ static void flood_fill(char **map, int max_x, int max_y);
 static int check_flags(char **map, int *flags, int x, int y);
 static int fill_check(char **map, int max_y);
 
-int validate(int argc, char **argv, char **map)
+int validate(int argc, char **argv)
 {
     int max_x;
     int i;
     char *ext;
+    char  **map;
 
     if (argc != 2)
         return (-1);
@@ -40,12 +41,12 @@ int validate(int argc, char **argv, char **map)
     map = ft_split(file_to_str(argv[1]), '\n');
     i = 0;
     if (!map[i])
-        return (-1);
+        return (free_pp((void *)map));
     max_x = ft_strlen(map[i]);
     while (map[++i])
     {
         if ((int)ft_strlen(map[i]) != max_x)
-            return (-1);
+            return (free_pp((void *)map));
     }
     return (check_content(map, max_x, i));
 }
@@ -66,16 +67,16 @@ static int check_content(char **map, int max_x, int max_y)
         while (++x < max_x)
         {
             if (!(check_flags(map, NULL, x, y)))
-                return (-1);
+                return (free_pp((void *)map));
             if ((x == 0 || y == 0 || x == max_x - 1 || y == max_y - 1) &&
                 map[y][x] != '1')
-                return (-3);
+                return (free_pp((void *)map));
             check_flags(map, flags, x, y);
         }
     }
     if (flags[0] == 1 && flags[1] == 1 && flags[2] >= 1)
         return (fill_check(map, max_y));
-    return (-3);
+    return (free_pp((void *)map));
 }
 
 static int check_flags(char **map, int *flags, int x, int y) {
@@ -97,30 +98,25 @@ static int check_flags(char **map, int *flags, int x, int y) {
 
 static int fill_check(char **map, int max_y)
 {
-    char **map_copy;
     int i;
     int p_pos[2];
 
     i = -1;
-    map_copy = ft_calloc((max_y + 1), sizeof(char *));
-    if (map_copy == NULL)
-        return (0);
     while (map[++i])
-        map_copy[i] = ft_strdup(map[i]);
+        map[i] = ft_strdup(map[i]);
     i--;
-    while (!ft_strchr(map_copy[i], 'P'))
+    while (!ft_strchr(map[i], 'P'))
         i--;
-    p_pos[0] = (ft_strchr(map_copy[i], 'P') - map_copy[i]);
+    p_pos[0] = (ft_strchr(map[i], 'P') - map[i]);
     p_pos[1] = i;
-    flood_fill(map_copy, p_pos[0], p_pos[1]);
+    flood_fill(map, p_pos[0], p_pos[1]);
     i = -1;
     while (++i < max_y)
     {
-        if (ft_strchr(map_copy[i], 'C') || ft_strchr(map_copy[i], 'E'))
-            return (-5);
+        if (ft_strchr(map[i], 'C') || ft_strchr(map[i], 'E'))
+            return (free_pp((void *)map));
     }
-  free_pp((void **)map_copy);
-  return (1);
+    return (1);
 }
 
 static void flood_fill(char **map, int x, int y)

@@ -50,9 +50,9 @@ static int    cen_collision(t_game *g)
         g->coins--;
     }
     else if (g->map[pos.y][pos.x] == 'E' && g->coins == 0)
-        return quit_free(*g, NULL, "HAI VINTO\n");//EXIT WIN;
+        return quit_free(*g, "HAI VINTO\n");//EXIT WIN;
     else if (g->map[pos.y][pos.x] == 'N')
-        return quit_free(*g, NULL, "HAI PERSO\n");//EXIT LOSS
+        return quit_free(*g, "HAI PERSO\n");//EXIT LOSS
     return (1);
 }
 
