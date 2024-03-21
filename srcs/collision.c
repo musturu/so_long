@@ -12,26 +12,26 @@ void    collision_check(t_game *g)
     dir = init_vec(dir, 0, 1);
     if (check_indir(*g, dir) == '1')
     {
-        (*g).player.pos.y -= 32;
-        g->player.v.y *= -0.7;
+        (*g).player.pos.y -= 12;
+        g->player.v.y *= -0.5;
     }
     dir = init_vec(dir, 0, -1);
     if (check_indir(*g, dir) == '1')
     {
-        g->player.pos.y += 32;
-        g->player.v.y *= -0.7;
+        g->player.pos.y += 12;
+        g->player.v.y *= -0.5;
     }
     dir = init_vec(dir, 1, 0);
     if (check_indir(*g, dir) == '1')
     {
-        g->player.pos.x -= 32;
-        g->player.v.x *= -0.7;
+        g->player.pos.x -= 12;
+        g->player.v.x *= -0.5;
     }
     dir = init_vec(dir, -1, 0);
     if (check_indir(*g, dir) == '1')
     {
-        g->player.pos.x += 32;
-        g->player.v.x *= -0.7;
+        g->player.pos.x += 12;
+        g->player.v.x *= -0.5;
     }
     cen_collision(g);
 }
