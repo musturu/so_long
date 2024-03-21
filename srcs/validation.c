@@ -38,7 +38,9 @@ int validate(int argc, char **argv)
         return (-1);
     if (ft_strncmp(ext, ".ber", ft_strlen(ext)) != 0)
         return (-1);
-    map = ft_split(file_to_str(argv[1]), '\n');
+    ext = file_to_str(argv[1]);
+    map = ft_split(ext, '\n');
+    free(ext);
     i = 0;
     if (!map[i])
         return (free_pp((void *)map));
