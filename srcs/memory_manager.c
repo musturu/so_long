@@ -19,6 +19,7 @@ void	free_pp(void **to_free)
 	i = 0;
     if (to_free != NULL)
 	{
+		printf("ho freeato\n");
 		while (to_free[i])
 		{
 			free(to_free[i]);

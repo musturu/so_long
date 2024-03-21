@@ -35,3 +35,10 @@ t_vec2 get_tile(t_game g, t_vec2 pixels)
     ret.y = (pixels.y / TILE_R) % (g.max.y);
     return (ret);
 }
+
+t_vec2 init_vec(t_vec2 vec, int x, int y)
+{
+    vec.x = x;
+    vec.y = y;
+    return (vec);
+}

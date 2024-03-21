@@ -24,12 +24,12 @@ static void flood_fill(char **map, int max_x, int max_y);
 static int check_flags(char **map, int *flags, int x, int y);
 static int fill_check(char **map, int max_y);
 
-int validate(int argc, char **argv)
+int validate(int argc, char **argv, char **map)
 {
     int max_x;
     int i;
-    char **map;
     char *ext;
+
     if (argc != 2)
         return (-1);
     ext = ft_strrchr(argv[1], '.');

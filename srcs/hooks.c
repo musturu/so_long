@@ -6,7 +6,7 @@ static void    get_ori(t_game *g);
 int key_hook_down(int key, t_game *game)
 {
     if (key == 65307)
-        return (quit_free(*game, NULL));
+        return (quit_free(*game, NULL, "\n"));
     if (key == 119)
         game->player.isaccel = 1;
     if (key == 97)

@@ -7,8 +7,8 @@
 
 # define TILE_R 128
 # define FPS 12
-# define AC  0.03
-# define DC  -0.008
+# define AC  0.05
+# define DC  -0.05
 # define MIN_MOVE 1
 # define TURN_SPEED 5
 # define FRICTION 0.85
@@ -90,10 +90,10 @@ typedef struct s_game
 
 /* MEMORY */
 void free_pp(void **to_free);
-int quit_free(t_game game, void **free);
+int quit_free(t_game game, void **free, char *toprint);
 
 /* VALIDATION */
-int validate(int argc, char **argv);
+int validate(int argc, char **argv, char **map);
 char *file_to_str(char *path);
 
 /* GRAPHICS */
@@ -106,6 +106,7 @@ void    print_player(t_game g);
 /* GAMEPLAY */
 void    phys_update(t_game *g, int time);
 int     update(t_game *g);
+void    collision_check(t_game *g);
 
 /* UTILS */
 void initialize(char *path, t_game *g);
@@ -114,5 +115,6 @@ int   key_hook_up(int key, t_game *game);
 t_vec2 get_tile(t_game g, t_vec2 pixels);
 long long	millitime(void);
 void	get_ms(t_game *g);
+t_vec2 init_vec(t_vec2 vec, int x, int y);
 
 #endif
