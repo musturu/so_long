@@ -14,7 +14,7 @@
 # define FRICTION 0.85
 
 # define PATH_TO_WALL "textures/wall.xpm"
-# define PATH_TO_FLOOR "textures/floor.xpm"
+# define PATH_TO_FLOOR "textures/floor2.xpm"
 # define PATH_TO_COIN "textures/coin.xpm"
 # define PATH_TO_EXIT "textures/exit.xpm"
 

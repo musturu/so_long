@@ -35,6 +35,7 @@ int    update(t_game *g)
 {
     long long milli;
     long long diff;
+    static int animcount;
 
     milli = millitime();
     diff = milli - g->ms;
@@ -44,6 +45,7 @@ int    update(t_game *g)
         get_ms(g);
         phys_update(g, 1);
         print_player(*g);
+        animcount++;
     }
     return (1);
 }

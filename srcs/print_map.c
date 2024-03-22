@@ -1,11 +1,13 @@
 #include "../so_long.h"
 
 static t_image get_im(t_game game, char c);
+static t_vec2 pos_image(char c, t_vec2 pxp);
 
 void    print_map(t_game game)
 {
-    int x;
-    int y;
+    int     x;
+    int     y;
+    t_vec2  pos;
 
     x = 0;
     y = 0;
@@ -14,8 +16,10 @@ void    print_map(t_game game)
         y = 0;
         while (y < game.max.y)
         {
+            pos = init_vec(pos, x, y);
+            pos = pos_image(game.map[y][x], pos);
             put_img_to_img(game.map_img, game.images.floor, x * TILE_R, y * TILE_R);
-            put_img_to_img(game.map_img, get_im(game, game.map[y][x]), x * TILE_R, y * TILE_R);
+            put_img_to_img(game.map_img, get_im(game, game.map[y][x]), pos.x, pos.y);
             y++;
         }
         x++;
@@ -43,8 +47,9 @@ void    print_player(t_game g)
             pxp.y = p.y + (y * TILE_R);
             pxp = get_tile(g, pxp);
             put_img_to_img(g.map_img, g.images.floor, pxp.x * TILE_R, pxp.y * TILE_R);
+            pxp = pos_image(g.map[p.y][p.x], pxp);
             put_img_to_img(g.map_img, get_im(g, g.map[pxp.y][pxp.x]),
-                pxp.x * TILE_R, pxp.y * TILE_R);
+                pxp.x, pxp.y);
             y++;
         }
         x++;
@@ -64,5 +69,14 @@ static t_image get_im(t_game game, char c)
         return (game.images.exit[0]);
     else
         return (game.images.floor);
+}
+
+static t_vec2 pos_image(char c, t_vec2 pxp)
+{
+    if (c == '1' || c == '0' || c == 'P')
+        return (init_vec(pxp, (pxp.x * TILE_R), (pxp.y * TILE_R)));
+    else
+        return (init_vec(pxp, (pxp.x * TILE_R) + 32, (pxp.y * TILE_R) + 32));
+    
 }
 
