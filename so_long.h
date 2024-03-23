@@ -68,9 +68,11 @@ typedef struct s_player
 
 typedef struct s_tile_image {
   t_image wall;
-  t_image coin;
+  t_image coin[8];
+  int   cind;
   t_image floor;
   t_image exit[2];
+  int   eind;
   t_image player[8];
 } t_images;
 
@@ -98,6 +100,7 @@ char *file_to_str(char *path);
 
 /* GRAPHICS */
 void    print_map(t_game game);
+void    update_map(t_game game);
 t_image	new_file_img(char * path, void *mlx_ptr);
 t_image	new_img(int w, int h, void *mlx);
 void	put_img_to_img(t_image dst, t_image src, int x, int y);

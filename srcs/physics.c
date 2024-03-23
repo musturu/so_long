@@ -14,9 +14,11 @@ ori is degrees(int)
 // better collision;
 #include "../so_long.h"
 #include <math.h>
+#include <stdio.h>
 
 static void    turn(t_game *g);
 static void    accel(t_game *g);
+static void turn_ori(t_game *g, int change);
 
 void    phys_update(t_game *g, int time)
 {
@@ -26,11 +28,8 @@ void    phys_update(t_game *g, int time)
     accel(g);
     g->player.a.x = g->player.tforce.x + g->player.eforce.x;
     g->player.a.y = g->player.tforce.y + g->player.eforce.y;
-    printf("acc: x%f,y%f\n", g->player.a.x, g->player.a.y);
-    printf("befvel: x%f,y%f\n", g->player.v.x, g->player.v.y);
     g->player.v.x += g->player.a.x * time;
     g->player.v.y += g->player.a.y * time;
-    printf("aftvel: x%f,y%f\n", g->player.v.x, g->player.v.y);
     cupos.x = (g->player.v.x * time) + cupos.x;
     cupos.y = (g->player.v.y * time) + cupos.y;
     if ((abs((int)cupos.x) + abs((int)cupos.y)) >= MIN_MOVE)
@@ -76,21 +75,18 @@ static void    accel(t_game *g)
 static void    turn(t_game *g)
 {
     double  square;
-    double  rads;
 
     square = pow(g->player.v.x, 2) + pow(g->player.v.y, 2);
-    rads = acos(g->player.v.x / sqrt(square));
+    turn_ori(g,  sqrt(square / 2) * g->player.isturn);
     if (g->player.isturn == -1)
     {
-        g->player.tforce.y = 4 * (-g->player.v.x)/64;
-        g->player.tforce.x = 4 * (g->player.v.y)/64;
-        g->player.ori = rads / (3.14 / 180);
+        g->player.tforce.y = 2 * (-g->player.v.x)/64;
+        g->player.tforce.x = 2 * (g->player.v.y)/64;
     }
     else if (g->player.isturn == 1)
     {
-        g->player.tforce.y = 4 * (g->player.v.x)/64;
-        g->player.tforce.x = 4 * (-g->player.v.y)/64;
-        g->player.ori = rads / (3.14 / 180);
+        g->player.tforce.y = 2 * (g->player.v.x)/64;
+        g->player.tforce.x = 2 * (-g->player.v.y)/64;
     }
     else if (g->player.isturn == 0)
     {
@@ -98,4 +94,14 @@ static void    turn(t_game *g)
         g->player.tforce.y = 0;
     }
     return ;
+}
+
+static void turn_ori(t_game *g, int change)
+{
+    g->player.ori = (g->player.ori + change) % 360;
+    if (g->player.ori < 0)
+    {
+        g->player.ori += 360;
+    }
+    printf("%d\n", g->player.ori);
 }

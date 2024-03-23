@@ -38,9 +38,18 @@ static void get_images(t_game *g)
 {
     g->images.wall = new_file_img(PATH_TO_WALL, g->mlx);
     g->images.floor = new_file_img(PATH_TO_FLOOR, g->mlx);
-    g->images.coin = new_file_img(PATH_TO_COIN, g->mlx);
+    g->images.coin[0] = new_file_img("textures/coin0.xpm", g->mlx);
+    g->images.coin[1] = new_file_img("textures/coin1.xpm", g->mlx);
+    g->images.coin[2] = new_file_img("textures/coin2.xpm", g->mlx);
+    g->images.coin[3] = new_file_img("textures/coin3.xpm", g->mlx);
+    g->images.coin[4] = new_file_img("textures/coin4.xpm", g->mlx);
+    g->images.coin[5] = new_file_img("textures/coin5.xpm", g->mlx);
+    g->images.coin[6] = new_file_img("textures/coin6.xpm", g->mlx);
+    g->images.coin[7] = new_file_img("textures/coin7.xpm", g->mlx);
+    g->images.cind = 0;
     g->images.exit[0] = new_file_img(PATH_TO_EXIT, g->mlx);
     g->images.exit[1] = new_file_img("textures/exit2.xpm", g->mlx);
+    g->images.eind = 0;
     g->images.player[0] = new_file_img("textures/player0.xpm", g->mlx);
     //g->images.player[1] = new_file_img("textures/player1.xpm", g->mlx);
     g->images.player[2] = new_file_img("textures/player2.xpm", g->mlx);

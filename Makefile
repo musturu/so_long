@@ -17,11 +17,11 @@ LIBSFLAG = -L$(LIBFTDIR) -lft -L$(FT_PRINTFDIR) -lftprintf -L$(MLXDIR) -lmlx_Lin
 
 # Source files
 SRCS = so_long.c \
-	   srcs/fd_to_string.c srcs/memory_manager.c srcs/print_map.c srcs/init.c \
+	   srcs/fd_to_string.c srcs/print_map.c srcs/init.c \
 	   srcs/physics.c srcs/validation.c srcs/graphics_utils.c \
 	   srcs/hooks.c srcs/exit_strat.c srcs/utils.c srcs/collision.c
 OBJS = so_long.o \
-	   objs/fd_to_string.o objs/memory_manager.o objs/print_map.o objs/init.o \
+	   objs/fd_to_string.o objs/print_map.o objs/init.o \
 	   objs/physics.o objs/validation.o objs/graphics_utils.o \
 	   objs/hooks.o objs/exit_strat.o objs/utils.o objs/collision.o
 
