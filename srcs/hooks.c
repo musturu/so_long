@@ -1,6 +1,5 @@
 #include "../so_long.h"
 
-static void    get_ori(t_game *g);
 static void    update_animations(t_game *g);
 
 int key_hook_down(int key, t_game *game)
@@ -67,19 +66,4 @@ static void    update_animations(t_game *g)
         g->images.cind--;
     else
         g->images.cind++;
-}
-
-static void    get_ori(t_game *g)
-{
-    int ori;
-
-    ori = g->player.ori;
-    if (ori >= 360 - 45 || ori < 45)
-        g->player.img_index = 0;
-    if ((ori >= 360-45-90 && ori <= 360-45-90-90) || (ori >= 45 && ori <= 45+90))
-        g->player.img_index = 2;
-    if ((ori >= 360-45-90-90 && ori <= 360-45-90-90-90) || (ori >= 45+90 && ori <= 45+90+90))
-        g->player.img_index = 4;
-    if ((ori >= 360-45-90-90-90 && ori <= 360-45-90-90-90-90) || (ori >= 45+90+90 && ori <= 45+90+90+90))
-        g->player.img_index = 6;
 }

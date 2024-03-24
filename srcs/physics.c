@@ -1,20 +1,11 @@
 /*
-todo
-funzione che prende il tempo passato e calcola la strada fatta tramite
-accellerazione (g->player.a) e velocita (g->player.v)
-
-
 a is pixels/milliseconds(squared)
 v is pixels/milliseconds
 pos is pixels
 ori is degrees(int)
 */
 
-//todo: rivedere fisica e attrito. funziona male il turning 
-// better collision;
 #include "../so_long.h"
-#include <math.h>
-#include <stdio.h>
 
 static void    turn(t_game *g);
 static void    accel(t_game *g);
@@ -30,8 +21,8 @@ void    phys_update(t_game *g, int time)
     g->player.a.y = g->player.tforce.y + g->player.eforce.y;
     g->player.v.x += g->player.a.x * time;
     g->player.v.y += g->player.a.y * time;
-    cupos.x = (g->player.v.x * time) + cupos.x;
-    cupos.y = (g->player.v.y * time) + cupos.y;
+    cupos.x = (g->player.v.x * time) + cupos.x + (0.5 * g->player.a.x);
+    cupos.y = (g->player.v.y * time) + cupos.y + (0.5 * g->player.a.y);
     if ((abs((int)cupos.x) + abs((int)cupos.y)) >= MIN_MOVE)
     {
         g->steps += (cupos.x + cupos.y);
