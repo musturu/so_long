@@ -17,7 +17,7 @@ void    update_map(t_game game)
         while (y < game.max.y)
         {
             put_img_to_img(game.map_img, game.images.floor, x * TILE_R, y * TILE_R);
-            pos = init_vec(pos, x, y);
+            pos = init_vec(x, y);
             pos = pos_image(game.map[y][x], pos);
             put_img_to_img(game.map_img, get_im(game, game.map[y][x]), pos.x, pos.y);
             y++;
@@ -27,6 +27,7 @@ void    update_map(t_game game)
     put_img_to_img(game.map_img, game.images.player[game.player.img_index],
         game.player.pos.x, game.player.pos.y);
     mlx_put_image_to_window(game.mlx, game.win, game.map_img.img_ptr, 0, 0);
+    put_count(game);
 }
 
 void    print_map(t_game game)
@@ -95,9 +96,9 @@ static t_image get_im(t_game game, char c)
 static t_vec2 pos_image(char c, t_vec2 pxp)
 {
     if (c == '1' || c == '0' || c == 'P')
-        return (init_vec(pxp, (pxp.x * TILE_R), (pxp.y * TILE_R)));
+        return (init_vec((pxp.x * TILE_R), (pxp.y * TILE_R)));
     else
-        return (init_vec(pxp, (pxp.x * TILE_R) + 32, (pxp.y * TILE_R) + 32));
+        return (init_vec((pxp.x * TILE_R) + 32, (pxp.y * TILE_R) + 32));
     
 }
 

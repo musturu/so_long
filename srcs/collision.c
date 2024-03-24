@@ -4,35 +4,20 @@
 
 static int    cen_collision(t_game *g);
 static char    check_indir(t_game g, t_vec2 dir);
+static void    effect(t_game *g, t_vec2 dir);
 
 void    collision_check(t_game *g)
 {
     t_vec2 dir;
 
-    dir = init_vec(dir, 0, 1);
-    if (check_indir(*g, dir) == '1')
-    {
-        (*g).player.pos.y -= 12;
-        g->player.v.y *= -0.5;
-    }
-    dir = init_vec(dir, 0, -1);
-    if (check_indir(*g, dir) == '1')
-    {
-        g->player.pos.y += 12;
-        g->player.v.y *= -0.5;
-    }
-    dir = init_vec(dir, 1, 0);
-    if (check_indir(*g, dir) == '1')
-    {
-        g->player.pos.x -= 12;
-        g->player.v.x *= -0.5;
-    }
-    dir = init_vec(dir, -1, 0);
-    if (check_indir(*g, dir) == '1')
-    {
-        g->player.pos.x += 12;
-        g->player.v.x *= -0.5;
-    }
+    dir = init_vec(0, 1);
+    effect(g, dir);
+    dir = init_vec(0, -1);
+    effect(g, dir);
+    dir = init_vec(1, 0);
+    effect(g, dir);
+    dir = init_vec(-1, 0);
+    effect(g, dir);
     cen_collision(g);
 }
 
@@ -48,6 +33,8 @@ static int    cen_collision(t_game *g)
     {
         g->map[pos.y][pos.x] = '0';
         g->coins--;
+        if (g->coins == 0)
+            g->images.eind = 1;
     }
     else if (g->map[pos.y][pos.x] == 'E' && g->coins == 0)
         return quit_free(*g, "HAI VINTO\n");//EXIT WIN;
@@ -67,36 +54,13 @@ static char    check_indir(t_game g, t_vec2 dir)
     return (g.map[to_check.y][to_check.x]);
 }
 
-
-/*static int    collision(t_game *g)
+static void    effect(t_game *g, t_vec2 dir)
 {
-    t_vec2  pos;
-    t_vec2  pixelpos;
-    t_vec2  next_pos;
-
-    pixelpos = g->player.pos;
-    pixelpos.x += (TILE_R / 2);
-    pixelpos.y += (TILE_R / 2);
-    next_pos = pixelpos;
-    next_pos.x += (int)(g->player.v.x * 5);
-    next_pos.y += (int)(g->player.v.y * 5);
-    pos = get_tile(*g, pixelpos);
-    next_pos = get_tile(*g, next_pos);
-    if (g->map[next_pos.y][next_pos.x] == '1')
+    if (check_indir(*g, dir) == '1')
     {
-        g->player.v.x *= -0.8;
-        g->player.v.y *= -0.8;
-        g->player.a.x = 0;
-        g->player.a.y = 0;
+        g->player.pos.y += (-5 * dir.y);
+        g->player.pos.x += (-5 * dir.x);
+        g->player.v.x *= (-0.5 * dir.x * dir.x);
+        g->player.v.y *= (-0.5 * dir.y * dir.y);
     }
-    if (g->map[pos.y][pos.x] == 'C')
-    {
-        g->map[pos.y][pos.x] = '0';
-        g->coins--;
-    }
-    else if (g->map[pos.y][pos.x] == 'E' && g->coins == 0)
-        return quit_free(*g, NULL);//EXIT WIN;
-    else if (g->map[pos.y][pos.x] == 'N')
-        return quit_free(*g, NULL);//EXIT LOSS
-    return (0);
-}*/
+}

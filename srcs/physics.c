@@ -34,6 +34,7 @@ void    phys_update(t_game *g, int time)
     cupos.y = (g->player.v.y * time) + cupos.y;
     if ((abs((int)cupos.x) + abs((int)cupos.y)) >= MIN_MOVE)
     {
+        g->steps += (cupos.x + cupos.y);
         g->player.pos.x =  g->player.pos.x + cupos.x;
         g->player.pos.y = cupos.y + g->player.pos.y;
         cupos.x = 0;
@@ -64,9 +65,9 @@ static void    accel(t_game *g)
     {
         g->player.eforce.x = -(g->player.v.x)/200;
         g->player.eforce.y = -(g->player.v.y)/200;
-        if (abs((int)(g->player.v.x * 1000)) <= 0.2 * 1000)
+        if (abs((int)(g->player.v.x * 1000)) <= 0.1 * 1000)
             g->player.v.x = 0;
-        if (abs((int)(g->player.v.y * 1000)) <= 0.2 * 1000)
+        if (abs((int)(g->player.v.y * 1000)) <= 0.1 * 1000)
             g->player.v.y = 0;
     }
 }
@@ -74,10 +75,7 @@ static void    accel(t_game *g)
 
 static void    turn(t_game *g)
 {
-    double  square;
-
-    square = pow(g->player.v.x, 2) + pow(g->player.v.y, 2);
-    turn_ori(g,  sqrt(square / 2) * g->player.isturn);
+    turn_ori(g,  1 * g->player.isturn);
     if (g->player.isturn == -1)
     {
         g->player.tforce.y = 2 * (-g->player.v.x)/64;
@@ -101,7 +99,6 @@ static void turn_ori(t_game *g, int change)
     g->player.ori = (g->player.ori + change) % 360;
     if (g->player.ori < 0)
     {
-        g->player.ori += 360;
+        g->player.ori += 360 + g->player.ori;
     }
-    printf("%d\n", g->player.ori);
 }

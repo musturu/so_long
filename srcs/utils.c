@@ -36,8 +36,10 @@ t_vec2 get_tile(t_game g, t_vec2 pixels)
     return (ret);
 }
 
-t_vec2 init_vec(t_vec2 vec, int x, int y)
+t_vec2 init_vec(int x, int y)
 {
+    t_vec2 vec;
+
     vec.x = x;
     vec.y = y;
     return (vec);

@@ -49,6 +49,7 @@ int    update(t_game *g)
         if (animcount == 15)
         {
             update_animations(g);
+            put_count(*g);
             animcount = 0;
         }
     }

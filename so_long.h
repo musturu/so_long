@@ -86,6 +86,7 @@ typedef struct s_game
   t_images  images;
   t_car     player;
   int       coins;
+  int       steps;
   long long ms;
 } t_game;
 
@@ -105,6 +106,7 @@ t_image	new_file_img(char * path, void *mlx_ptr);
 t_image	new_img(int w, int h, void *mlx);
 void	put_img_to_img(t_image dst, t_image src, int x, int y);
 void    print_player(t_game g);
+void    put_count(t_game g);
 
 /* GAMEPLAY */
 void    phys_update(t_game *g, int time);
@@ -118,6 +120,7 @@ int   key_hook_up(int key, t_game *game);
 t_vec2 get_tile(t_game g, t_vec2 pixels);
 long long	millitime(void);
 void	get_ms(t_game *g);
-t_vec2 init_vec(t_vec2 vec, int x, int y);
+t_vec2 init_vec(int x, int y);
+void    get_ori(t_game *g);
 
 #endif

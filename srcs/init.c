@@ -32,6 +32,7 @@ void initialize(char *path, t_game *g)
   g->map_img = new_img(g->max.x * TILE_R, i * TILE_R, g->mlx);
   get_content(g, g->max.x, g->max.y);
   init_player(g);
+    g->steps = 0;
 }
 
 static void get_images(t_game *g)
