@@ -6,7 +6,7 @@
 /*   By: lmoricon <lmoricon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:05:02 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/25 16:08:39 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:55:53 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ static void	init_player(t_game *g);
 
 void	initialize(char *path, t_game *g)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
-	g->map = ft_split(file_to_str(path), '\n');
+	str = file_to_str(path);
+	g->map = ft_split(str, '\n');
+	free(str);
 	g->max.x = ft_strlen(g->map[0]);
 	while (g->map[i])
 		i++;

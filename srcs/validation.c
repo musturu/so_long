@@ -6,7 +6,7 @@
 /*   By: lmoricon <lmoricon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 12:04:03 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/25 16:02:01 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:54:39 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,7 @@ static int	fill_check(char **map, int max_y)
 	int	i;
 	int	p_pos[2];
 
-	i = -1;
-	while (map[++i])
-		map[i] = ft_strdup(map[i]);
-	i--;
+	i = max_y - 1;
 	while (!ft_strchr(map[i], 'P'))
 		i--;
 	p_pos[0] = (ft_strchr(map[i], 'P') - map[i]);
@@ -118,8 +115,9 @@ static int	fill_check(char **map, int max_y)
 	while (++i < max_y)
 	{
 		if (ft_strchr(map[i], 'C') || ft_strchr(map[i], 'E'))
-			return (free_pp((void *)map));
+			return (free_pp(map));
 	}
+	free_pp(map);
 	return (1);
 }
 

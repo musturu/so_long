@@ -92,7 +92,7 @@ typedef struct s_game
 
 
 /* MEMORY */
-int free_pp(void **to_free);
+int free_pp(char **to_free);
 int quit_free(t_game game, char *toprint);
 
 /* VALIDATION */
