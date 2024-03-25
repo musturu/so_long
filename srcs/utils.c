@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmoricon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/25 16:12:32 by lmoricon          #+#    #+#             */
+/*   Updated: 2024/03/25 16:13:08 by lmoricon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../so_long.h"
 
-// Get timestamp in milliseconds
 long long	millitime(void)
 {
 	struct timeval	time;
@@ -21,26 +31,26 @@ void	get_ms(t_game *g)
 		g->ms = now;
 }
 
-t_vec2 get_tile(t_game g, t_vec2 pixels)
+t_vec2	get_tile(t_game g, t_vec2 pixels)
 {
-    t_vec2 ret;
+	t_vec2	ret;
 
-    if (pixels.x < 0 || pixels.y < 0)
-    {
-        ret.x = 0;
-        ret.y = 0;
-        return (ret);
-    }
-    ret.x = (pixels.x / TILE_R) % (g.max.x);
-    ret.y = (pixels.y / TILE_R) % (g.max.y);
-    return (ret);
+	if (pixels.x < 0 || pixels.y < 0)
+	{
+		ret.x = 0;
+		ret.y = 0;
+		return (ret);
+	}
+	ret.x = (pixels.x / TILE_R) % (g.max.x);
+	ret.y = (pixels.y / TILE_R) % (g.max.y);
+	return (ret);
 }
 
-t_vec2 init_vec(int x, int y)
+t_vec2	init_vec(int x, int y)
 {
-    t_vec2 vec;
+	t_vec2	vec;
 
-    vec.x = x;
-    vec.y = y;
-    return (vec);
+	vec.x = x;
+	vec.y = y;
+	return (vec);
 }
