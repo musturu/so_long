@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmoricon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lmoricon <lmoricon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:52:53 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/25 15:55:46 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:05:23 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,20 @@ void	get_ori(t_game *g)
 	int	ori;
 
 	ori = g->player.ori;
-	if (ori >= 360 - 45 || ori < 45)
-		g->player.img_index = 0;
-	if ((ori >= 225 && ori <= 135) || (ori >= 45 && ori <= 135))
+	if (ori > 23 && ori <= 68)
+		g->player.img_index = 1;
+	if ((ori > 68 && ori <= 113))
 		g->player.img_index = 2;
-	if ((ori >= 135 && ori <= 45) || (ori >= 45 + 90 && ori <= 225))
+	if ((ori > 113 && ori <= 158))
+		g->player.img_index = 3;
+	if ((ori > 158 && ori <= 203))
 		g->player.img_index = 4;
-	if ((ori >= 45 && ori <= 315) || (ori >= 225 && ori <= 315))
+	if ((ori > 203 && ori <= 248))
+		g->player.img_index = 5;
+	if ((ori > 248 && ori <= 293))
 		g->player.img_index = 6;
+	if ((ori > 293 && ori <= 338))
+		g->player.img_index = 7;
+	if (ori > 338 || ori < 23)
+		g->player.img_index = 0;
 }
