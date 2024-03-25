@@ -28,6 +28,8 @@ char  *file_to_str(char *path)
     readr = 1;
     ret = ft_strdup("");
     fd = open(path, O_RDONLY);
+    if (fd < 0)
+        return  (NULL);
     while(readr > 0)
     {
         readr = read(fd, buf, BUFFER_SIZE);

@@ -48,8 +48,8 @@ static char    check_indir(t_game g, t_vec2 dir)
     t_vec2  to_check;
 
     to_check = g.player.pos;
-    to_check.x += (TILE_R / 2) + ((TILE_R / 2) * dir.x);
-    to_check.y += (TILE_R / 2) + ((TILE_R / 2) * dir.y);
+    to_check.x += (TILE_R / 2) + ((TILE_R / 3) * dir.x);
+    to_check.y += (TILE_R / 2) + ((TILE_R / 3) * dir.y);
     to_check = get_tile(g, to_check);
     return (g.map[to_check.y][to_check.x]);
 }

@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 {
     t_game  g;
 
+    g.mlx = NULL;
     if (validate(argc, argv) != 1)
         return (quit_free(g, "Error\nFai il serio\n"));
     initialize(argv[1], &g);

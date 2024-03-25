@@ -3,6 +3,13 @@
 static void destroy_all(t_game game)
 {
     mlx_destroy_image(game.mlx, game.images.coin[0].img_ptr);
+    mlx_destroy_image(game.mlx, game.images.coin[1].img_ptr);
+    mlx_destroy_image(game.mlx, game.images.coin[2].img_ptr);
+    mlx_destroy_image(game.mlx, game.images.coin[3].img_ptr);
+    mlx_destroy_image(game.mlx, game.images.coin[4].img_ptr);
+    mlx_destroy_image(game.mlx, game.images.coin[5].img_ptr);
+    mlx_destroy_image(game.mlx, game.images.coin[6].img_ptr);
+    mlx_destroy_image(game.mlx, game.images.coin[7].img_ptr);
     mlx_destroy_image(game.mlx, game.images.wall.img_ptr);
     mlx_destroy_image(game.mlx, game.images.floor.img_ptr);
     mlx_destroy_image(game.mlx, game.images.exit[0].img_ptr);
