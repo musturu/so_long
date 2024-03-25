@@ -6,7 +6,7 @@
 /*   By: lmoricon <lmoricon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:41:01 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/25 18:47:17 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:06:58 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	update(t_game *g)
 
 static void	enemy_move(t_game *g, int *count)
 {
+	(void)g;
 	*count = 0;
 }
 

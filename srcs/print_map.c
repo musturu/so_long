@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmoricon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lmoricon <lmoricon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:01 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/25 16:12:15 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:33:13 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static t_image	get_im(t_game game, char c)
 		return (game.images.coin[game.images.cind]);
 	if (c == 'E')
 		return (game.images.exit[game.images.eind]);
+	if (c == 'N')
+		return (game.images.exit[1]);
 	else
 		return (game.images.floor);
 }

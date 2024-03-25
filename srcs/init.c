@@ -6,7 +6,7 @@
 /*   By: lmoricon <lmoricon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:05:02 by lmoricon          #+#    #+#             */
-/*   Updated: 2024/03/25 17:55:53 by lmoricon         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:54:12 by lmoricon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	get_images(t_game *g);
 static void	get_content(t_game *g, int max_x, int max_y);
 static void	init_player(t_game *g);
+static void	spawn_enemy(t_game *g);
 
 void	initialize(char *path, t_game *g)
 {
@@ -35,6 +36,7 @@ void	initialize(char *path, t_game *g)
 	g->map_img = new_img(g->max.x * TILE_R, i * TILE_R, g->mlx);
 	get_content(g, g->max.x, g->max.y);
 	init_player(g);
+	spawn_enemy(g);
 	g->steps = 0;
 }
 
@@ -106,4 +108,27 @@ static void	init_player(t_game *g)
 	g->ms = 0;
 	g->player.isturn = 0;
 	g->player.isaccel = 0;
+}
+
+static void	spawn_enemy(t_game *g)
+{
+	char								c;
+	unsigned long long	seed;
+	t_vec2							spawn;
+
+	seed = (unsigned long long)&c;
+	spawn.x = seed % g->max.x - 1;
+	spawn.y = seed % g->max.y - 1;
+	printf("%i, %i\n", spawn.x, spawn.y);
+	if (g->max.x > 3 && g->max.y > 3)
+	{
+		if ()
+	
+		if (spawn.x <= g->max.x - 1 && spawn.y <= g->max.y - 1)
+		{
+			if (g->map[spawn.y][spawn.x] == '0')
+				g->map[spawn.y][spawn.x] = 'N';
+		}
+	}
+	printf("\n%c\n", g->map[spawn.y][spawn.y]);
 }
