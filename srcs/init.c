@@ -57,13 +57,13 @@ static void	get_images(t_game *g)
 	g->images.exit[1] = new_file_img("textures/exit2.xpm", g->mlx);
 	g->images.eind = 0;
 	g->images.player[0] = new_file_img("textures/player0.xpm", g->mlx);
-	//g->images.player[1] = new_file_img("textures/player1.xpm", g->mlx);
+	g->images.player[1] = new_file_img("textures/player1.xpm", g->mlx);
 	g->images.player[2] = new_file_img("textures/player2.xpm", g->mlx);
-	//g->images.player[3] = new_file_img("textures/player3.xpm", g->mlx);
+	g->images.player[3] = new_file_img("textures/player3.xpm", g->mlx);
 	g->images.player[4] = new_file_img("textures/player4.xpm", g->mlx);
-	//g->images.player[5] = new_file_img("textures/player5.xpm", g->mlx);
+	g->images.player[5] = new_file_img("textures/player5.xpm", g->mlx);
 	g->images.player[6] = new_file_img("textures/player6.xpm", g->mlx);
-	//g->images.player[7] = new_file_img("textures/player7.xpm", g->mlx);
+	g->images.player[7] = new_file_img("textures/player7.xpm", g->mlx);
 }
 
 static void	get_content(t_game *g, int max_x, int max_y)
@@ -117,18 +117,15 @@ static void	spawn_enemy(t_game *g)
 	t_vec2							spawn;
 
 	seed = (unsigned long long)&c;
-	spawn.x = seed % g->max.x - 1;
-	spawn.y = seed % g->max.y - 1;
+	spawn.x = seed % (g->max.x - 1);
+	spawn.y = seed % (g->max.y - 1);
 	printf("%i, %i\n", spawn.x, spawn.y);
 	if (g->max.x > 3 && g->max.y > 3)
 	{
-		if ()
-	
 		if (spawn.x <= g->max.x - 1 && spawn.y <= g->max.y - 1)
 		{
 			if (g->map[spawn.y][spawn.x] == '0')
 				g->map[spawn.y][spawn.x] = 'N';
 		}
 	}
-	printf("\n%c\n", g->map[spawn.y][spawn.y]);
 }
